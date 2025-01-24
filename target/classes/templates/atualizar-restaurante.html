@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="#"
+      th:action="@{/atualizar-restaurante/{id}(id=${restaurante.id})}"
+      th:object="${restaurante}"
+      method="post">
+    <label for="nome">Nome: </label>
+    <input type="text" th:field="*{nome}" id="nome">
+    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+    <br/>
+    <input type="submit" value="Atualizar">
+</form>
+
+</body>
+</html>

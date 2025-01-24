@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyFood_NovoRestaurante</title>
+</head>
+<body>
+<form action="#" th:action="@{/adicionar-restaurante}" th:object="${restaurante}" method="post"> <!--Nome do objeto deve ser o mesmo passado por parametro-->
+    <label for="nome">Nome: </label>
+    <input type="text" th:field="*{nome}" id="nome">
+    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+    <br/>
+    <input type="submit" value="Adicionar">
+    <br/>
+    <!--Criar botão para visualizar cardapio do restaurante em edição-->
+    <br/>
+    <!--Criar botão para retornar ao index-->
+    <p><a href="index">Pagina inicial</a> </p>
+    <br/>
+
+    <p><a href="listar-restaurante">Listar restaurantes</a> </p>
+    <br/>
+
+</form>
+
+
+</body>
+</html>

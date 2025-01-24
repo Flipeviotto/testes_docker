@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:switch="${restaurantes}">
+    <h2 th:case="null">Ainda não há restaurantes</h2>
+    <div th:case="*">
+        <h2>Restaurantes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Remover</th>
+                <th>Cardápio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="restaurante : ${restaurantes}">  <!--restaurante pega um item de restaurant-->
+                <td th:text="${restaurante.nome}"></td>
+
+                <!--Criar editar-->
+                <td><a th:href="@{/editar-restaurante/{id}(id=${restaurante.id})}">Editar</a></td>  <!--//chama o editar, coloca a id do restaurante em {id}, isso sera enviado para o editar-->
+                <!--Criar remover-->
+                <td><a th:href="@{/remover-restaurante/{id}(id=${restaurante.id})}">Remover</a></td>
+                <!--Criar cardápio-->
+                <td><a th:href="@{/listar-cardapio/{id}(id=${restaurante.id})}">Cardapio</a></td>   <!--vai mostrar os cardapios deste restaurante-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/novo-restaurante">Adicionar novo restaurante.</a></p>
+
+</div>
+
+</body>
+</html>

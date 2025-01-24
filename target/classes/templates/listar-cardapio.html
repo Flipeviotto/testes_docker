@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--não usa form, isso é mais para post, quando quer inserir informações-->
+<!--verifique se algum conteudo foi enviado no th:switch="${atributo do model}, case=null == vazio, case="*" escreve a tabela-->
+<!--Os comandos ficam dentro da primeira div, não entre elas-->
+<div th:switch="${cardapios}">
+    <h2 th:case="null">A lista de cardápios esta vazia :(</h2>
+    <div th:case="*">
+        <h2>Cardápios</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            <tbody>
+            <tr th:each="prato : ${cardapios}">  <!--cada prato é um item do cardapio-->
+                <td th:text="${prato.nome}"></td>
+                <td th:text="${prato.descricao}"></td>
+                <td th:text="${prato.preco}"></td>
+
+                <!--Criar editar-->
+                <td><a th:href="@{/editar-cardapio/{id}(id=${prato.id})}">Editar</a></td>  <!--//chama o editar, coloca a id do restaurante em {id}, isso sera enviado para o editar-->
+                <!--Criar remover-->
+                <td><a th:href="@{/remover-cardapio/{id}(id=${prato.id})}">Remover</a></td>
+
+            </tr>
+            </tbody>
+        </table>
+            </tr>
+            </thead>
+    </div>
+    <p><a th:href="@{/novo-cardapio/{id}(id=${restaurante.id})}">Adicionar novo prato ao cardápio.</a></p>  <!--é no restaurante que vai adicionar, então precisa do id dele para identificar no método-->
+    <p><a href="/listar-restaurante">Listar restaurantes</a></p>
+    <p><a href="/index">Pagina inicial</a> </p>
+</div>
+
+
+
+</body>
+</html>

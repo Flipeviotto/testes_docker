@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Food - Novo Cardapio</title>
+</head>
+<body>
+
+<!--erro em adicionar-->
+
+<form action="#" th:action="@{/adicionar-cardapio/{id}(id=${restaurante.id})}" th:object="${cardapio}" method="post">
+    <label for="nome">Nome: </label>
+    <input type="text" th:field="*{nome}" id="nome">
+    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+    <br/>
+    <label for="descricao">Descrição: </label>
+    <input type="text" th:field="*{descricao}" id="descricao">
+    <br/>
+    <label for="preco">Preço: </label>
+    <input type="number" th:field="*{preco}" id="preco" step=".01">
+    <span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></span>
+    <br/>
+    <input type="submit" value="Adicionar">
+
+</form>
+<br/>
+<!--Voltar para lista de restaurante-->
+<p><a th:href="@{/listar-cardapio/{id}(id=${restaurante.id})}">Lista de cardapio</a></p>
+<!--Criar botão para retornar ao index-->
+<p><a href="/listar-restaurante">Listar restaurantes</a></p>
+<p><a href="/index">Pagina inicial</a> </p>
+
+
+</body>
+</html>
